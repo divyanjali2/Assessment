@@ -21,22 +21,26 @@ class Book
     }
 
     public function getAvailableBooks()
-    {
-        $query = "SELECT COUNT(*) AS total_available_books FROM books WHERE availability = 'available'";
-        $result = $this->db->getConnection()->query($query);
-        $row = $result->fetch_assoc();
-        return $row['available_books'];
-    }
+{
+    $query = "SELECT COUNT(*) AS available_books FROM books WHERE availability = 'available'";
+    $result = $this->db->getConnection()->query($query);
+    $row = $result->fetch_assoc();
+    return $row['available_books'];
+}
 
-    public function getReturnedBooks()
+    public function getBorrowedBooks()
     {
-        $query = "SELECT COUNT(*) AS total_available_books FROM books WHERE availability = 'available'
-        '
-        '";
+        $query = "SELECT COUNT(*) AS borrowed_books FROM books WHERE borrowed = 'borrowed'";
         $result = $this->db->getConnection()->query($query);
         $row = $result->fetch_assoc();
-        return $row['returned_books'];
+        return $row['borrowed_books'];
     }
+    
+
+ 
+  
+    
+   
 }
 ?>
 <!DOCTYPE html>
@@ -53,7 +57,7 @@ class Book
 <body>
     <h1>Library Dashboard</h1><br>
     <div class="container">
-    
+
         <?php
         include 'includes/db.php';
         $book = new Book();
@@ -61,15 +65,27 @@ class Book
         <div class="dashboard">
             <div class="card">
                 <h2><a href="view_books.php">Total Books</h2>
-                <p><div class="pa">
+                <p>
+                <div class="pa">
                     <?php echo $book->getTotalBooks(); ?>
-             </div>   </p>
+                </div>
+                </p>
             </div>
             <div class="space"></div> <!-- Space between cards -->
             <div class="card">
-                <h2><a href="viewbook.php">Available Books</h2>
+                <h2><a href="available.php">Available Books</h2>
+                <?php echo $book->getAvailableBooks(); ?>
 
             </div>
+           
+            <div class="space"></div> <!-- Space between cards -->
+            <div class="card">
+                <h2><a href="view_books.php">Borrowed Books</h2>
+                <?php echo $book->getBorrowedBooks(); ?>
+
+            </div>
+
+
             <div class="space"></div> <!-- Space between cards -->
 
             <div class="space"></div> <!-- Space between cards -->

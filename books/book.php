@@ -1,5 +1,5 @@
 <?php
-include '../includes/DB.php';
+include '../includes/db.php';
 
 $db = new DB();
 
@@ -9,15 +9,16 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
     $isbn = $_POST['isbn'];
     $author = $_POST['author'];
-    $publisher = $_POST['publisher'];
+    
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $location = $_POST['location'];
     $availability = $_POST['availability'];
+    $borrowed = $_POST['borrowed'];
 
     // Prepare and execute the SQL query
-    $sql = "INSERT INTO `books` (`book_name`, `category`, `isbn`, `author`, `publisher`, `price`, `quantity`, `location`, `availability`) 
-            VALUES ('$bookName', '$category', '$isbn', '$author', '$publisher', '$price', '$quantity', '$location', '$availability')";
+    $sql = "INSERT INTO `books` (`book_name`, `category`, `isbn`, `author`, `publisher`, `price`, `quantity`, `location`, `availability`,'borrowed') 
+            VALUES ('$bookName', '$category', '$isbn', '$author', '$publisher', '$price', '$quantity', '$location', '$availability','$borrowed')";
     $result = $db->query($sql);
 
     // Check if the query was successful
@@ -66,10 +67,9 @@ if (isset($_POST['submit'])) {
                 <label>ISBN</label>
                 <input type="number" class="form-control" placeholder="Enter email" name="isbn">
                 <label>Author</label>
-                <input type="text"" class="form-control" placeholder="Enter email" name="author">
+                <input type="text" class="form-control" placeholder="Enter email" name="author">
 
-                <label>publisher</label>
-                <input type="text" class="form-control" placeholder="Enter email" name="publisher">
+                
                 <label>Price</label>
                 <input type="text" class="form-control" placeholder="Enter email" name="price">
                 <label>quantity</label>
@@ -78,6 +78,8 @@ if (isset($_POST['submit'])) {
                 <input type="text" class="form-control" placeholder="Enter email" name="location">
                 <label>Availability</label>
                 <input type="text" class="form-control" placeholder="Enter email" name="availability">
+                <label>Borrowed</label>
+                <input type="text" class="form-control" placeholder="Enter email" name="borrowed">
                 <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>

@@ -1,5 +1,5 @@
 <?php
-include '../includes/DB.php';
+include '../includes/db.php';
 // Create an instance of the DB class
 $db = new DB();
 
@@ -16,11 +16,11 @@ $bookName = $row['book_name'];
 $category = $row['category'];
 $isbn = $row['isbn'];
 $author = $row['author'];
-$publisher = $row['publisher'];
 $price = $row['price'];
 $quantity = $row['quantity'];
 $location = $row['location'];
 $availability = $row['availability'];
+$borrowed = $row['borrowed'];
 
 
 
@@ -30,17 +30,17 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
     $isbn = $_POST['isbn'];
     $author = $_POST['author'];
-    $publisher = $_POST['publisher'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $location = $_POST['location'];
     $availability = $_POST['availability'];
+    $borrowed = $_POST['borrowed'];
+
 
     // Prepare and execute the SQL query
 
-    $sql = "UPDATE `books` SET `id`='$id',`book_name`='$bookName',`category`=' $category',`isbn`='$isbn',`author`='$author',
-    `publisher`='$publisher',`price`=' $price',`quantity`='$quantity',`location`='$location',
-    `availability`='$availability' where id=$id";
+    $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$category', `isbn`='$isbn', `author`='$author', `price`='$price', `quantity`='$quantity', `location`='$location', `availability`='$availability', `borrowed`='$borrowed' WHERE id=$id";
+
 
 
     $result = $db->query($sql);
@@ -96,14 +96,11 @@ if (isset($_POST['submit'])) {
                 <label>Author</label>
                 <input type="text" class=" form-control" placeholder="Enter email" name="author"
                 value =<?php echo $author;?>>
-
-                <label>publisher</label>
-                <input type="text" class="form-control" placeholder="Enter email" name="publisher"
-                value =<?php echo $publisher;?>> 
                 
                 <label>Price</label>
                 <input type="text" class="form-control" placeholder="Enter email" name="price"
                 value =<?php echo  $price;?>>
+
                 <label>quantity</label>
                 <input type="number" class="form-control" placeholder="Enter email" name="quantity"
                 value =<?php echo $quantity;?>>
@@ -113,6 +110,10 @@ if (isset($_POST['submit'])) {
                 <label>Availability</label>
                 <input type="text" class="form-control" placeholder="Enter email" name="availability"
                 value =<?php echo $availability;?>>
+                <label>Borrowed</label>
+                <input type="text" class="form-control" placeholder="Enter email" name="borrowed"
+                value =<?php echo $borrowed;?>> 
+                
                 <button type="submit" class="btn btn-primary" name="submit">Update</button>
         </form>
     </div>

@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php';
+include './includes/db.php';
 
 // Create an instance of the DB class
 $db = new DB();
@@ -20,9 +20,7 @@ $conn = $db->getConnection();
 
 <body>
     <div class="container">
-        <button class="btn btn-primary my-5"><a href="..\dashboard.php" class="text-light">Back to Dashboard</button>
-        <button class="btn btn-primary my-5"><a href="book.php" class="text-light">Add New Book</button>
-        
+        <button class="btn btn-primary my-5"><a href="dashboard.php" class="text-light">Back to Dashboard</button>
         </button>
 
         <table class="table">
@@ -33,14 +31,13 @@ $conn = $db->getConnection();
                     <th scope="col">category</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Author</th>
-                    
+          
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Location</th>
                     <th scope="col">Availability</th>
                     <th scope="col">Borrowed</th>
 
-                    <th scope="col">Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,15 +55,16 @@ $conn = $db->getConnection();
                         $category = $row['category'];
                         $isbn = $row['isbn'];
                         $author = $row['author'];
-                    
+                       
                         $price = $row['price'];
                         $quantity = $row['quantity'];
                         $location = $row['location'];
                         $availability = $row['availability'];
                         $borrowed = $row['borrowed'];
 
+
                         echo ' <tr>
-                      <th scope="row">' . $number . '</th>
+                        <th scope="row"> '. $number.' </th>
                       <td>' . $bookName . '</td>
                       <td>' . $category . '</td>
                       <td>' . $isbn . '</td>
@@ -79,11 +77,7 @@ $conn = $db->getConnection();
                       <td>' . $borrowed . '</td>
 
                       <td>
-                      <button class="btn btn-primary"><a href="update.php?
-                      updateid='.$id.'"class="text-light">Update</a></button>
-
-                      <button class = "btn btn-danger"><a href="delete.php? 
-                      deleteid='.$id.'" class="text-light">Delete</a></button>
+                      
                       </td>
                   </tr>';
                   $number++;
