@@ -60,7 +60,7 @@ class Book
         ?>
         <div class="dashboard">
             <div class="card">
-                <h2><a href="viewbook.php">Total Books</h2>
+                <h2><a href="view_books.php">Total Books</h2>
                 <p><div class="pa">
                     <?php echo $book->getTotalBooks(); ?>
              </div>   </p>
@@ -74,7 +74,7 @@ class Book
 
             <div class="space"></div> <!-- Space between cards -->
             <div class="card">
-                <h2><a href="add_book.php">Manage Books</h2>
+                <h2><a href=".\books\display.php">Manage Books</h2>
 
             </div>
         </div>
