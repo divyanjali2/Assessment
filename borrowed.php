@@ -1,25 +1,21 @@
 <?php
-include '../includes/db.php';
+include './includes/db.php';
 $db = new DB();
 $conn = $db->getConnection();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Display Records</title>
+    <title>Borrowed Books</title>
 </head>
-
 <body>
     <div class="container">
-        <button class="btn btn-primary my-5"><a href="..\dashboard.php" class="text-light">Back to Dashboard</button>
-        <button class="btn btn-primary my-5"><a href="book.php" class="text-light">Add New Book</button>
+        <button class="btn btn-primary my-5"><a href="dashboard.php" class="text-light">Back to Dashboard</button>
         </button>
 
         <table class="table">
@@ -27,7 +23,7 @@ $conn = $db->getConnection();
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Book Title</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">category</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Author</th>
                     <th scope="col">Price</th>
@@ -35,15 +31,16 @@ $conn = $db->getConnection();
                     <th scope="col">Location</th>
                     <th scope="col">Availability</th>
                     <th scope="col">Borrowed</th>
-                    <th scope="col">Operation</th>
+
                 </tr>
             </thead>
             <tbody>
 
                 <?php
+
                 $number = 1;
 
-                $sql = "SELECT * FROM `books`";
+                $sql = "SELECT * FROM `books` WHERE `borrowed` = 'borrowed'";
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -58,8 +55,9 @@ $conn = $db->getConnection();
                         $availability = $row['availability'];
                         $borrowed = $row['borrowed'];
 
+
                         echo ' <tr>
-                      <th scope="row">' . $number . '</th>
+                        <th scope="row"> ' . $number . ' </th>
                       <td>' . $bookName . '</td>
                       <td>' . $category . '</td>
                       <td>' . $isbn . '</td>
@@ -71,13 +69,9 @@ $conn = $db->getConnection();
                       <td>' . $borrowed . '</td>
 
                       <td>
-                      <button class="btn btn-primary my-1"><a href="update.php?
-                      updateid=' . $id . '"class="text-light">Update</a></button>
-
-                      <button class = "btn btn-danger"><a href="delete.php? 
-                      deleteid=' . $id . '" class="text-light">Delete</a></button>
+                      
                       </td>
-                </tr>';
+                  </tr>';
                         $number++;
 
                     }
@@ -88,5 +82,4 @@ $conn = $db->getConnection();
     </div>
     </table>
 </body>
-
 </html>

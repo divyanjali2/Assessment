@@ -1,10 +1,7 @@
 <?php
 include '../includes/DB.php';
 
-// Create an instance of the DB class
 $db = new DB();
-
-// Get the database connection object
 $conn = $db->getConnection();
 
 if (isset ($_GET['deleteid'])){

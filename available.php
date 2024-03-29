@@ -5,12 +5,10 @@ ini_set('display_errors', 1);
 
 include './includes/db.php';
 
-// Create an instance of the DB class
 $db = new DB();
-
-// Get the database connection object
 $conn = $db->getConnection();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,11 +21,6 @@ $conn = $db->getConnection();
 </head>
 
 <body>
-    
-
- 
-    
-
     <div class="container">
         <h1>Available Books</h1>
 
@@ -39,7 +32,6 @@ $conn = $db->getConnection();
                     <th scope="col">Category</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Author</th>
-                   
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Location</th>
@@ -49,7 +41,7 @@ $conn = $db->getConnection();
             <tbody>
 
                 <?php
-                // Initialize the number variable
+              
                 $number = 1;
 
                 $sql = "SELECT * FROM `books` WHERE `availability` = 'available'";
@@ -61,7 +53,6 @@ $conn = $db->getConnection();
                         $category = $row['category'];
                         $isbn = $row['isbn'];
                         $author = $row['author'];
-                      
                         $price = $row['price'];
                         $quantity = $row['quantity'];
                         $location = $row['location'];
@@ -73,8 +64,7 @@ $conn = $db->getConnection();
                                 <td>' . $category . '</td>
                                 <td>' . $isbn . '</td>
                                 <td>' . $author . '</td>
-                               
-                                <td>' . $price . '</td>
+                                 <td>' . $price . '</td>
                                 <td>' . $quantity . '</td>
                                 <td>' . $location . '</td>
                                 <td>' . $availability . '</td>

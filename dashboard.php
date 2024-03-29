@@ -1,8 +1,4 @@
 <?php
-// include/DB.php
-
-
-// Book.php
 class Book
 {
     protected $db;
@@ -21,12 +17,12 @@ class Book
     }
 
     public function getAvailableBooks()
-{
-    $query = "SELECT COUNT(*) AS available_books FROM books WHERE availability = 'available'";
-    $result = $this->db->getConnection()->query($query);
-    $row = $result->fetch_assoc();
-    return $row['available_books'];
-}
+    {
+        $query = "SELECT COUNT(*) AS available_books FROM books WHERE availability = 'available'";
+        $result = $this->db->getConnection()->query($query);
+        $row = $result->fetch_assoc();
+        return $row['available_books'];
+    }
 
     public function getBorrowedBooks()
     {
@@ -35,66 +31,73 @@ class Book
         $row = $result->fetch_assoc();
         return $row['borrowed_books'];
     }
-    
-
- 
-  
-    
-   
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-NcVOiQHymFw1fSEMWJZq2QRtmLZBM05FbQvfPYuN+d98F2fROivwJJVXKBR4AqV6" crossorigin="anonymous">
+
     <title>Library Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Linking CSS file -->
+    <link rel="stylesheet" href="style.css"> 
+
 </head>
-
 <body>
-    <h1>Library Dashboard</h1><br>
-    <div class="container">
+    <nav class="navbar">
+         <ul class="nav-links">
+            <li><a href="view_books.php">Total Books</a></li>
+            <li><a href="available.php">Available Books</a></li>
+            <li><a href="borrowed.php">Borrowed Books</a></li>
+            <li><a href=".\books\display.php">Manage Books</a></li>
+        </ul>
+        <ul class="nav-links nav-links-right">
+            <li><a href=".\login\login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Library Dashboard</h1>
 
-        <?php
-        include 'includes/db.php';
-        $book = new Book();
-        ?>
-        <div class="dashboard">
-            <div class="card">
-                <h2><a href="view_books.php">Total Books</h2>
-                <p>
-                <div class="pa">
-                    <?php echo $book->getTotalBooks(); ?>
-                </div>
-                </p>
+    <?php
+    include 'includes/db.php';
+    $book = new Book();
+    ?>
+    <div class="dashboard">
+        <div class="card">
+            <h2><a href="view_books.php">Total Books</a></h2>
+            <p>
+            <div class="pa">
+                <?php echo $book->getTotalBooks(); ?>
             </div>
-            <div class="space"></div> <!-- Space between cards -->
-            <div class="card">
-                <h2><a href="available.php">Available Books</h2>
-                <?php echo $book->getAvailableBooks(); ?>
-
-            </div>
-           
-            <div class="space"></div> <!-- Space between cards -->
-            <div class="card">
-                <h2><a href="view_books.php">Borrowed Books</h2>
-                <?php echo $book->getBorrowedBooks(); ?>
-
-            </div>
-
-
-            <div class="space"></div> <!-- Space between cards -->
-
-            <div class="space"></div> <!-- Space between cards -->
-            <div class="card">
-                <h2><a href=".\books\display.php">Manage Books</h2>
-
-            </div>
+            </p>
         </div>
-    </div>
-</body>
+        <div class="space"></div> 
+        <div class="card">
+            <h2><a href="available.php">Available Books</a></h2>
+            <p>
+            <div class="pa">
+                <?php echo $book->getAvailableBooks(); ?>
+            </div>
+            </p>
+        </div>
+        <div class="space"></div> 
+        <div class="card">
+            <h2><a href="borrowed.php">Borrowed Books</a></h2>
+            <p>
+            <div class="pa">
+                <?php echo $book->getBorrowedBooks(); ?>
+            </div>
+            </p>
+        </div>
+        <div class="space"></div> 
 
+        <div class="card">
+            <h2><a href=".\books\display.php">Manage Books</a></h2>
+        </div>
+     </div>
+
+</body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-// DB.php - Class for database connection
+
 class DB {
     private $host = 'localhost';
     private $username = 'root';
@@ -9,10 +9,12 @@ class DB {
 
     public function __construct() {
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
-
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
+
+      
+        
     }
 
     public function getConnection() {
@@ -21,8 +23,8 @@ class DB {
     public function query($sql) {
         return $this->conn->query($sql);
     }
-
-    // Method to fetch all rows from a table
+  
+    
     public function fetchAll($query) {
         $result = $this->conn->query($query);
         $rows = [];
@@ -30,6 +32,10 @@ class DB {
             $rows[] = $row;
         }
         return $rows;
+    }
+
+    public function __destruct() {
+    
     }
 }
 ?>

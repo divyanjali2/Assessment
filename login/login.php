@@ -1,44 +1,55 @@
 <?php
-include '../includes/db.php';
 session_start();
 
+
+include '../includes/db.php';
+$db = new DB();
+$message = '';
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $db = new DB();
-    $conn = $db->getConnection();
 
-    // SQL injection prevention
-    $username = $conn->real_escape_string($username);
-    $password = $conn->real_escape_string($password);
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $db->getConnection()->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $query = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
-    $result = $db->query($query);
-
-    if ($result && $result->num_rows == 1) {
-        $_SESSION['username'] = $username;
-        header("Location: ../dashboard.php");
+    if ($result->num_rows == 1) {
+        $user = $result->fetch_assoc();
+    
+        if (password_verify($password, $user['password'])) {
+           
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            
+            header("Location: ../dashboard.php");
+            exit;
+        } else {
+        
+            $message = "Incorrect password";
+        }
     } else {
-        echo "Invalid username or password";
+       
+        $message = "Username not found";
     }
+    $stmt->close();
 }
 ?>
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="..\style.css">
 </head>
+
 <body>
     <div class="login-container">
         <h2>Admin Login</h2>
@@ -47,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <?php echo $message; ?>
     </div>
 </body>
+
 </html>

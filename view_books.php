@@ -1,23 +1,18 @@
 <?php
 include './includes/db.php';
-
-// Create an instance of the DB class
 $db = new DB();
-
-// Get the database connection object
 $conn = $db->getConnection();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>View Books</title>
 </head>
-
 <body>
     <div class="container">
         <button class="btn btn-primary my-5"><a href="dashboard.php" class="text-light">Back to Dashboard</button>
@@ -31,7 +26,6 @@ $conn = $db->getConnection();
                     <th scope="col">category</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Author</th>
-          
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Location</th>
@@ -43,7 +37,7 @@ $conn = $db->getConnection();
             <tbody>
 
                 <?php
-                // Initialize the number variable
+
                 $number = 1;
 
                 $sql = "SELECT * FROM `books`";
@@ -55,7 +49,6 @@ $conn = $db->getConnection();
                         $category = $row['category'];
                         $isbn = $row['isbn'];
                         $author = $row['author'];
-                       
                         $price = $row['price'];
                         $quantity = $row['quantity'];
                         $location = $row['location'];
@@ -64,12 +57,11 @@ $conn = $db->getConnection();
 
 
                         echo ' <tr>
-                        <th scope="row"> '. $number.' </th>
+                        <th scope="row"> ' . $number . ' </th>
                       <td>' . $bookName . '</td>
                       <td>' . $category . '</td>
                       <td>' . $isbn . '</td>
                       <td>' . $author . '</td>
-                    
                       <td>' . $price . '</td>
                       <td>' . $quantity . '</td>
                       <td>' . $location . '</td>
@@ -80,7 +72,7 @@ $conn = $db->getConnection();
                       
                       </td>
                   </tr>';
-                  $number++;
+                        $number++;
 
                     }
                 }
@@ -90,5 +82,4 @@ $conn = $db->getConnection();
     </div>
     </table>
 </body>
-
 </html>
