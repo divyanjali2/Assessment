@@ -1,7 +1,8 @@
 <?php
 include '../includes/db.php';
-$db = new DB();
-$conn = $db->getConnection();
+$db = new DB();//creates an instance of the DB class,
+$conn = $db->getConnection();//retrieves the database connection object from the DB class using the getConnection() method.
+
 ?>
 
 
@@ -44,9 +45,13 @@ $conn = $db->getConnection();
                 $number = 1;
 
                 $sql = "SELECT * FROM `books`";
-                $result = mysqli_query($conn, $sql);
+                $result = mysqli_query($conn, $sql);//executes the SQL query using the database connection ($conn) and stores the result in $result
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
+/*Inside the if ($result) block, it loops through each row of the result set using while
+ ($row = mysqli_fetch_assoc($result)) { ... }.
+It extracts the values of each column from the current row into separate variables like $id, $bookName, $category, etc. */
+
                         $id = $row['id'];
                         $bookName = $row['book_name'];
                         $category = $row['category'];
@@ -58,8 +63,11 @@ $conn = $db->getConnection();
                         $availability = $row['availability'];
                         $borrowed = $row['borrowed'];
 
+/*The sequential number is displayed in the first column (<th scope="row">) using $number.
+The book information such as name, category, ISBN, author, price, quantity, location, availability, 
+and borrowed status are displayed in subsequent columns (<td>). */
                         echo ' <tr>
-                      <th scope="row">' . $number . '</th>
+                    <th scope="row">' . $number . '</th>
                       <td>' . $bookName . '</td>
                       <td>' . $category . '</td>
                       <td>' . $isbn . '</td>

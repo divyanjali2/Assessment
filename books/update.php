@@ -1,13 +1,18 @@
 <?php
 include '../includes/db.php';
 $db = new DB();
+//retrieves the database connection object from the DB class using the getConnection() method.
 $conn = $db->getConnection();
 $db = new DB();
+
+//This retrieves the value of the updateid parameter from the URL query string. Presumably, 
+//this ID corresponds to the book that needs to be updated
 $id = $_GET['updateid'];
 $sql = "SELECT * FROM `books` WHERE id=$id";
 
-
+// executes an SQL query ($sql) on the database connection ($conn) and stores the result in $result
 $result=mysqli_query($conn,$sql);
+//fetches a single row from the result set returned by the SQL query and stores it in an associative array $row
 $row=mysqli_fetch_assoc($result);
 $bookName = $row['book_name'];
 $category = $row['category'];
@@ -36,7 +41,7 @@ if (isset($_POST['submit'])) {
 $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$category', `isbn`='$isbn', `author`='$author', `price`='$price', `quantity`='$quantity', `location`='$location', `availability`='$availability', `borrowed`='$borrowed' WHERE id=$id";
 
 
-
+//executing a SQL query using the $sql string and storing the result in the $result
     $result = $db->query($sql);
 
     
@@ -75,6 +80,7 @@ $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$cat
                 <label>ISBN</label>
                 <input type="number" class="form-control" name="isbn"
                 value =<?php echo $isbn;?>>
+                
                 <label>Author</label>
                 <input type="text" class=" form-control" name="author"
                 value =<?php echo $author;?>>

@@ -1,8 +1,11 @@
 <?php
 include '../includes/db.php';
 
+//creates an instance of the DB class,
 $db = new DB();
 
+/*This block checks if the form has been submitted (presumably via a POST request) by checking 
+if the 'submit' key is set in the $_POST superglobal.*/
 if (isset($_POST['submit'])) {
     
     $bookName = $_POST['book_name'];
@@ -14,11 +17,14 @@ if (isset($_POST['submit'])) {
     $location = $_POST['location'];
     $availability = $_POST['availability'];
     $borrowed = $_POST['borrowed'];
-
+/**The script retrieves form data submitted via POST and assigns them to variables. 
+     * These variables likely correspond to the fields in the books table */
+    
     
     $sql = "INSERT INTO `books` (`book_name`, `category`, `isbn`, `author`, `price`, `quantity`, `location`, `availability`, `borrowed`) 
     VALUES ('$bookName', '$category', '$isbn', '$author', '$price', '$quantity', '$location', '$availability', '$borrowed')";
-
+/* executes the SQL query using the query() method of the $db object, which is an instance of the DB class. 
+It expects the query to return a result.*/ 
     $result = $db->query($sql);
 
     
