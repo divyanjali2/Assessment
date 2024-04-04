@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
     $stmt = $db->getConnection()->prepare($sql);
 
-$stmt->bind_param("ss", $username, $password);//It binds the username and hashed password as parameters to the prepared statement.
+    $stmt->bind_param("ss", $username, $password);//It binds the username and hashed password as parameters to the prepared statement.
 
 
     if ($stmt->execute()) {
@@ -24,11 +24,11 @@ $stmt->bind_param("ss", $username, $password);//It binds the username and hashed
         header("Location: ./index.php");
         exit;
     } else {
-    
+
         $message = "Error: " . $sql . "<br>" . $stmt->error;
     }
 
-    
+
     $stmt->close();
 }
 
@@ -58,26 +58,31 @@ Finally, it closes the prepared statement. */
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 
 <div class="container">
 
-        <h2>Sign Up</h2>
-        <form method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <input type="submit" value="Sign Up">
-           
-        </form>
-        <div class="message"><?php echo $message; ?></div>
+    <h2>Sign Up</h2>
+    <form method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" >
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" >
+
+        <input type="submit" value="Sign Up">
+        <button type="submit">Login</button>
+
+
+
+    </form>
+    <div class="message">
+        <?php echo $message; ?>
     </div>
-    
+</div>
+
 </body>
 
 </html>
