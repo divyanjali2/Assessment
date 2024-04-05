@@ -1,5 +1,7 @@
 <?php
 include '../includes/db.php';
+include '../includes/navbar.php';
+
 $db = new DB();
 //retrieves the database connection object from the DB class using the getConnection() method.
 $conn = $db->getConnection();
@@ -63,8 +65,9 @@ $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$cat
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Update Records</title>
+<link rel="stylesheet" href="../assets/css/style.css">
 
-    <title>Update Records</title>
 </head>
 
 <body>
@@ -72,7 +75,7 @@ $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$cat
         <form method="post">
             <div class="form-group">
                 <label>Book Title</label>
-                <input type="text" class="form-control" name="book_name"
+                <input type="string" class="form-control" name="book_name"
                  value =<?php echo $bookName;?>>
                 <label>Category</label>
                 <input type="text" class="form-control" name="category"
@@ -82,7 +85,7 @@ $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$cat
                 value =<?php echo $isbn;?>>
                 
                 <label>Author</label>
-                <input type="text" class=" form-control" name="author"
+                <input type="string" class=" form-control" name="author"
                 value =<?php echo $author;?>>
                 <label>Price</label>
                 <input type="text" class="form-control" name="price"
@@ -94,12 +97,19 @@ $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$cat
                 <input type="text" class="form-control" name="location"
                 value =<?php echo $location;?>>
                 <label>Availability</label>
-                <input type="text" class="form-control" name="availability"
-                value =<?php echo $availability;?>>
-                <label>Borrowed</label>
-                <input type="text" class="form-control" name="borrowed"
-                value =<?php echo $borrowed;?>> 
-                
+                <select class="form-select" name="availability" value =<?php echo $availability;?>>
+               
+    <option value="Available">Available</option>
+    <option value="Not Available">Not Available</option>
+</select> <br><br>
+
+
+            
+                <label>Select Borrowed Status</label>
+<select class="form-select" name="borrowed" value =<?php echo $borrowed;?>>
+    <option value="Borrowed">Borrowed</option>
+    <option value="Having">Having</option>
+</select>
                 <button type="submit" class="btn btn-primary my-5" name="submit">Update</button>
         </form>
     </div>
