@@ -42,17 +42,21 @@ if (isset($_POST["login"])) {
 <head>
      <title>Library Managment System</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
+
 
 <body>
      <br /><br />
+     <h1 align="center">Library Managment System</h1>
      <div class="container" style="width:500px;">
-          <h3 align="center">Library Managment System</h3>
+         
           <br />
           <?php
           if (isset($_GET["action"]) == "login") {
                ?>
-               <h3 align="center">Login</h3>
+               <h1 align="center">Login</h1>
                <br />
                <form method="post">
                     <label>Enter Username</label>
@@ -68,7 +72,7 @@ if (isset($_POST["login"])) {
           <?php
           } else {
                ?>
-               <h3 align="center">Register</h3>
+               <h1 align="center">Register</h1>
                <br />
                <form method="post">
                     <label>Enter Username</label>

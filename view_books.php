@@ -17,6 +17,7 @@ $conn = $db->getConnection();
     <title>View Books</title>
     <link rel="stylesheet" href="assets/css/style.css">
 
+
 </head>
 <body>
     <div class="available">
@@ -28,7 +29,7 @@ $conn = $db->getConnection();
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Book Title</th>
-                    <th scope="col">category</th>
+                    <th scope="col">Category</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Author</th>
                     <th scope="col">Price</th>
