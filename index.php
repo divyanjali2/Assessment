@@ -45,14 +45,11 @@ if (isset($_POST["login"])) {
      <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
-
-
 <body>
      <br /><br />
      <h1 align="center">Library Managment System</h1>
      <div class="container" style="width:500px;">
-         
-          <br />
+         <br/>
           <?php
           if (isset($_GET["action"]) == "login") {
                ?>

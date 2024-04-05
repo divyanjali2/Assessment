@@ -1,16 +1,9 @@
 <?php
-include '../includes/db.php';
-include '../includes/action.php';
-include './b_nav.php';
+
 
 //session_start();  
-if(!isset($_SESSION["username"]))  
-{  
-     header("location:../index.php?action=login");  
-} 
 
-//creates an instance of the DB class,
-$db = new DB();
+include 'includes/navbar.php';
 
 
 /*This block checks if the form has been submitted (presumably via a POST request) by checking 
@@ -50,10 +43,17 @@ It expects the query to return a result.*/
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Add new record</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-
 
 <div class="container-xl">
 <div class="row">
@@ -61,15 +61,15 @@ It expects the query to return a result.*/
         <form method="post">
             <div class="form-group">
                 
-            <div class="col-6">
+            <div class="col">
                 <label>Book Title</label>
                 <input type="text" class="form-control " placeholder="Enter book title" name="book_name">
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-8">
+            <div class="col">
                 <label>Category</label>
                 <input type="text" class="form-control" placeholder="Enter book category" name="category">
             </div>
-            <div class="col-3">
+            <div class="col">
                 <label>ISBN</label>
                 <input type="number" class="form-control" placeholder="Enter ISBN" name="isbn">
             </div>

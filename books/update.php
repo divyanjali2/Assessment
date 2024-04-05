@@ -1,6 +1,6 @@
 <?php
 include '../includes/db.php';
-include '../includes/navbar.php';
+include './b_nav.php';
 
 $db = new DB();
 //retrieves the database connection object from the DB class using the getConnection() method.
@@ -64,54 +64,69 @@ $sql = "UPDATE `books` SET `id`='$id', `book_name`='$bookName', `category`='$cat
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<title>Update Records</title>
+    
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Update Records</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 
 <body>
-    <div class="container">
+   
+<div class="container-xl">
+<div class="row">
+    <h1>Update Records</h1>
         <form method="post">
             <div class="form-group">
+
+            <div class="col">
                 <label>Book Title</label>
                 <input type="string" class="form-control" name="book_name"
-                 value =<?php echo $bookName;?>>
+                 value =<?php echo $bookName;?>></div>
+            <div class="col">
                 <label>Category</label>
                 <input type="text" class="form-control" name="category"
-                value =<?php echo $category;?>>
+                value =<?php echo $category;?>> </div>
+                <div class="col">
                 <label>ISBN</label>
                 <input type="number" class="form-control" name="isbn"
-                value =<?php echo $isbn;?>>
-                
+                value =<?php echo $isbn;?>> </div>
+                <div class="col">
                 <label>Author</label>
                 <input type="string" class=" form-control" name="author"
-                value =<?php echo $author;?>>
+                value =<?php echo $author;?>> </div>
+                <div class="col">
                 <label>Price</label>
                 <input type="text" class="form-control" name="price"
-                value =<?php echo  $price;?>>
+                value =<?php echo  $price;?>> </div>
+                <div class="col">
                 <label>Quantity</label>
                 <input type="number" class="form-control" name="quantity"
-                value =<?php echo $quantity;?>>
+                value =<?php echo $quantity;?>> </div>
+                <div class="col">
                 <label>Location</label>
                 <input type="text" class="form-control" name="location"
-                value =<?php echo $location;?>>
+                value =<?php echo $location;?>> </div>
+                <div class="col">
                 <label>Availability</label>
                 <select class="form-select" name="availability" value =<?php echo $availability;?>>
                
     <option value="Available">Available</option>
     <option value="Not Available">Not Available</option>
-</select> <br><br>
+</select> <br></div>
 
 
-            
+<div class="col">
                 <label>Select Borrowed Status</label>
 <select class="form-select" name="borrowed" value =<?php echo $borrowed;?>>
     <option value="Borrowed">Borrowed</option>
     <option value="Having">Having</option>
-</select>
+</select></div>
                 <button type="submit" class="btn btn-primary my-5" name="submit">Update</button>
         </form>
     </div>
+</div>
 </body>
 </html>
