@@ -1,8 +1,11 @@
 <?php
 include '../includes/db.php';
 include '../includes/action.php';
+include '../includes/navbar.php';
+
 //creates an instance of the DB class,
 $db = new DB();
+
 
 /*This block checks if the form has been submitted (presumably via a POST request) by checking 
 if the 'submit' key is set in the $_POST superglobal.*/
@@ -39,6 +42,7 @@ It expects the query to return a result.*/
 <!doctype html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,9 +50,16 @@ It expects the query to return a result.*/
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Add new record</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 
 <body>
+<h1>Add New Book</h1>
+
+
+
+
     <div class="container">
         <form method="post">
             <div class="form-group my-3">
@@ -69,7 +80,19 @@ It expects the query to return a result.*/
                 <label>Availability</label>
                 <input type="text" class="form-control" placeholder="Enter book availability" name="availability">
                 <label>Borrowed</label>
-                <input type="text" class="form-control" placeholder="Borrowed or Having" name="borrowed">
+                <input type="text" class="form-control" placeholder="Borrowed or Having" name="borrowed" >
+                <select>
+                        <option value="">Having</option>
+                    </select>
+                    <select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+
+
+
                 <button type="submit" class="btn btn-primary my-3" name="submit">Submit</button>
         </form>
     </div>

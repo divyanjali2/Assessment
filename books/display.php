@@ -1,6 +1,7 @@
 
 <?php
 include '../includes/db.php';
+include '../includes/navbar.php';
 
 session_start();  
 if(!isset($_SESSION["username"]))  
@@ -12,26 +13,22 @@ $db = new DB();//creates an instance of the DB class,
 $conn = $db->getConnection();//retrieves the database connection object from the DB class using the getConnection() method.
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Display Records</title>
-   
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
 <body>
-    <div class="container">
-        <button class="btn btn-primary my-5"><a href="..\dashboard.php" class="text-light">Back to Dashboard</button>
-        <button class="btn btn-primary my-5"><a href="book.php" class="text-light">Add New Book</button>
-        </button>
-
+    <div class="available">
+       
+        <button class="button button1 my-2"><a href="..\dashboard.php" class="text-light" >Back to Dashboard</a></button>
+        <button class="button button1 my-2"><a href="book.php" class="text-light" >Add New Book</a></button><br>
+        <h1>Book Details</h1>
         <table class="table">
             <thead>
                 <tr>

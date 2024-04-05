@@ -3,6 +3,7 @@
 <?php
 include './includes/db.php';
 include 'includes/action.php';
+include './includes/navbar.php';
 
 $db = new DB();
 $conn = $db->getConnection();
@@ -16,12 +17,14 @@ $conn = $db->getConnection();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Borrowed Books</title>
-    
+    <link rel="stylesheet" href="assets/css/style.css">
+
 
 </head>
 <body>
-    <div class="container">
-        <button class="btn btn-primary my-5"><a href="dashboard.php" class="text-light">Back to Dashboard</button>
+    <div class="acontainer">
+    <h1>Borrowed Books</h1>
+
         </button>
 
         <table class="table">
