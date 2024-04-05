@@ -1,6 +1,10 @@
 <?php
 include '../includes/DB.php';
-
+session_start();  
+if(!isset($_SESSION["username"]))  
+{  
+     header("location:index.php?action=login");  
+} 
 $db = new DB();
 $conn = $db->getConnection();
 

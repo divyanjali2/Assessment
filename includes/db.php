@@ -27,6 +27,9 @@ class DB {
     public function getConnection() {
         return $this->conn;
     }
+    public function prepare($sql) {
+        return $this->conn->query($sql);
+    }
     //This method accepts a SQL query as a parameter, executes the query using the database connection, 
     //and returns the result.
     public function query($sql) {

@@ -1,6 +1,6 @@
 <?php
 include '../includes/db.php';
-
+include '../includes/action.php';
 //creates an instance of the DB class,
 $db = new DB();
 

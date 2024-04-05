@@ -1,61 +1,90 @@
 <?php
-include './includes/db.php';
-$db = new DB();
+$connect = mysqli_connect("localhost", "root", "", "librarymgtsystem");
 
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $sql = "SELECT * FROM users WHERE username='$username'";
-
-    $result = $db->query($sql);
-
-    if ($result) {
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $hashed_password = $row['password'];
-
-            if (password_verify($password, $hashed_password)) {
-
-
-                header("Location: ./dashboard.php");
-            } else {
-
-                echo "Invalid username or password!";
-            }
-        } else {
-
-            echo "Invalid username or password!";
-        }
-    } else {
-
-        echo "Error: " . $db->conn->error;
-    }
+session_start();
+if (isset($_SESSION["username"])) {
+     header("location:dashboard.php");
+}
+if (isset($_POST["register"])) {
+     if (empty($_POST["username"]) && empty($_POST["password"])) {
+          echo '<script>alert("Both Fields are required")</script>';
+     } else {
+          $username = mysqli_real_escape_string($connect, $_POST["username"]);
+          $password = mysqli_real_escape_string($connect, $_POST["password"]);
+          $password = md5($password);
+          $query = "INSERT INTO users (username, password) VALUES('$username', '$password')";
+          if (mysqli_query($connect, $query)) {
+               echo '<script>alert("Registration Done")</script>';
+          }
+     }
+}
+if (isset($_POST["login"])) {
+     if (empty($_POST["username"]) && empty($_POST["password"])) {
+          echo '<script>alert("Both Fields are required")</script>';
+     } else {
+          $username = mysqli_real_escape_string($connect, $_POST["username"]);
+          $password = mysqli_real_escape_string($connect, $_POST["password"]);
+          $password = md5($password);
+          $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+          $result = mysqli_query($connect, $query);
+          if (mysqli_num_rows($result) > 0) {
+               $_SESSION['username'] = $username;
+               header("location:dashboard.php");
+          } else {
+               echo '<script>alert("Wrong User Details")</script>';
+          }
+     }
 }
 ?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href=".\assets\css\style.css">
+     <title>Library Managment System</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 </head>
 
 <body>
-    <div class="login-container">
-        <h2>Admin Login</h2>
-        <form action="index.php" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="submit">Login</button>
-            <button type="submit"><a href="signup.php">Sign Up</a></button>
-
-        </form>
-
-    </div>
+     <br /><br />
+     <div class="container" style="width:500px;">
+          <h3 align="center">Library Managment System</h3>
+          <br />
+          <?php
+          if (isset($_GET["action"]) == "login") {
+               ?>
+               <h3 align="center">Login</h3>
+               <br />
+               <form method="post">
+                    <label>Enter Username</label>
+                    <input type="text" name="username" class="form-control" />
+                    <br />
+                    <label>Enter Password</label>
+                    <input type="password" name="password" class="form-control" />
+                    <br />
+                    <input type="submit" name="login" value="Login" class="btn btn-info" />
+                    <br />
+                    <p align="center"><a href="index.php">Register</a></p>
+               </form>
+          <?php
+          } else {
+               ?>
+               <h3 align="center">Register</h3>
+               <br />
+               <form method="post">
+                    <label>Enter Username</label>
+                    <input type="text" name="username" class="form-control" />
+                    <br />
+                    <label>Enter Password</label>
+                    <input type="password" name="password" class="form-control" />
+                    <br />
+                    <input type="submit" name="register" value="Register" class="btn btn-info" />
+                    <br />
+                    <p align="center"><a href="index.php?action=login">Login</a></p>
+               </form>
+          <?php
+          }
+          ?>
+     </div>
 </body>
 
 </html>

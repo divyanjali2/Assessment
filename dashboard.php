@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +8,12 @@
     <title>Library Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-<?php include 'includes/navbar.php'; ?>
+<?php 
+include 'includes/navbar.php';
+include 'includes/action.php';
+ ?>
+
 <h1>Library Dashboard</h1>
 
     <?php
@@ -53,7 +55,7 @@
             <h2><a href=".\books\display.php">Manage Books</a></h2>
         </div>
     </div>
-
+   
 </body>
 
 </html>

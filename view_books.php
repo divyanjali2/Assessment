@@ -1,5 +1,6 @@
 <?php
 include './includes/db.php';
+include 'includes/action.php';
 
 $db = new DB();
 $conn = $db->getConnection();

@@ -1,6 +1,13 @@
 
 <?php
 include '../includes/db.php';
+
+session_start();  
+if(!isset($_SESSION["username"]))  
+{  
+     header("location:index.php?action=login");  
+} 
+
 $db = new DB();//creates an instance of the DB class,
 $conn = $db->getConnection();//retrieves the database connection object from the DB class using the getConnection() method.
 

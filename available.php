@@ -1,18 +1,17 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include './includes/db.php';
-
+include 'includes/action.php';
 
 $db = new DB();
 $conn = $db->getConnection();
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,6 @@ $conn = $db->getConnection();
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Available Books</title>
 </head>
-
 <body>
     <div class="container">
         <h1>Available Books</h1>
