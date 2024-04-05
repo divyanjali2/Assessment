@@ -1,7 +1,13 @@
 <?php
 include '../includes/db.php';
 include '../includes/action.php';
-include '../includes/navbar.php';
+include './b_nav.php';
+
+session_start();  
+if(!isset($_SESSION["username"]))  
+{  
+     header("location:../index.php?action=login");  
+} 
 
 //creates an instance of the DB class,
 $db = new DB();

@@ -22,7 +22,6 @@ $conn = $db->getConnection();
 <body>
     <div class="available">
        
-        <button class="button button1 md-5"><a href="dashboard.php" class="text-light" >Back to Dashboard</a></button><br>
 <h1>Total Books</h1>
         <table class="table">
             <thead>

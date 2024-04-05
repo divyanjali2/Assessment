@@ -1,5 +1,7 @@
 <nav class="navbar">
         <ul class="nav-links">
+        <li><a href="dashboard.php">Dashboard</a></li>
+
             <li><a href="view_books.php">Total Books</a></li>
             <li><a href="available.php">Available Books</a></li>
             <li><a href="borrowed.php">Borrowed Books</a></li>

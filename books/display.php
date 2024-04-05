@@ -1,16 +1,16 @@
-
 <?php
 include '../includes/db.php';
-include '../includes/navbar.php';
+include './b_nav.php';
 
 session_start();  
 if(!isset($_SESSION["username"]))  
 {  
-     header("location:index.php?action=login");  
+     header("location:../index.php?action=login");  
 } 
 
 $db = new DB();//creates an instance of the DB class,
 $conn = $db->getConnection();//retrieves the database connection object from the DB class using the getConnection() method.
+
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,6 @@ $conn = $db->getConnection();//retrieves the database connection object from the
 <body>
     <div class="available">
        
-        <button class="button button1 my-2"><a href="..\dashboard.php" class="text-light" >Back to Dashboard</a></button>
         <button class="button button1 my-2"><a href="book.php" class="text-light" >Add New Book</a></button><br>
         <h1>Book Details</h1>
         <table class="table">
