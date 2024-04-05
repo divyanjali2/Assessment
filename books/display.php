@@ -26,9 +26,11 @@ $conn = $db->getConnection();//retrieves the database connection object from the
 <body>
     <div class="available">
        
-        <button class="button button1 my-2"><a href="book.php" class="text-light" >Add New Book</a></button><br>
+    
         <h1>Book Details</h1>
         <table class="table">
+        <button class="button button1 my-2"><a href="book.php" class="text-light" >Add New Book</a></button><br>
+
             <thead>
                 <tr>
                     <th scope="col">ID</th>

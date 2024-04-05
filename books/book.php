@@ -3,7 +3,7 @@ include '../includes/db.php';
 include '../includes/action.php';
 include './b_nav.php';
 
-session_start();  
+//session_start();  
 if(!isset($_SESSION["username"]))  
 {  
      header("location:../index.php?action=login");  
@@ -56,7 +56,7 @@ It expects the query to return a result.*/
 <h1>Add New Book</h1>
     <div class="container">
         <form method="post">
-            <div class="form-group my-3">
+            <div class="form-group my-2">
                 <label>Book Title</label>
                 <input type="text" class="form-control " placeholder="Enter book title" name="book_name">
                 <label>Category</label>
@@ -72,19 +72,15 @@ It expects the query to return a result.*/
                 <label>Location</label>
                 <input type="text" class="form-control" placeholder="Enter location" name="location">
                 <label>Availability</label>
-                <select class="form-select" name="availability" value =<?php echo $availability;?>>
-               
-    <option value="Available">Available</option>
-    <option value="Not Available">Not Available</option>
-</select> <br><br>
-
-       
-<label>Select Borrowed Status</label>
-<select class="form-select" name="borrowed">
-    <option value="Borrowed">Borrowed</option>
-    <option value="Having">Having</option>
-</select>
-
+                    <select class="form-select" name="availability" value =<?php echo $availability;?>>
+                        <option value="Available">Available</option>
+                        <option value="Not Available">Not Available</option>
+                    </select> <br><br>
+                <label>Select Borrowed Status</label>
+                    <select class="form-select" name="borrowed">
+                        <option value="Borrowed">Borrowed</option>
+                        <option value="Having">Having</option>
+                    </select>
                 <button type="submit" class="btn btn-primary my-3" name="submit">Submit</button>
         </form>
     </div>
